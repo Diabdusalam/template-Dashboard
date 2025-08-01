@@ -43,7 +43,14 @@ export default function DashboardViewModel() {
       data: [330, 250, 110, 300, 490, 350, 270, 130, 425, 330, 250, 110],
     },
   ];
-
+  const dataTable = [
+    {
+      companes: "Google",
+      members: 55,
+      budget: "Rp. 100.000.000",
+      completion: 60,
+    },
+  ];
   const fetching = async () => {
     try {
       const fetchedData = await fetchData();

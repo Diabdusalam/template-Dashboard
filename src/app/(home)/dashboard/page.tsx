@@ -7,6 +7,15 @@ import DashboardViewModel from "./_dashboard-view-model";
 import BarChart from "@/components/charts/barChart";
 import { IoIosRocket } from "react-icons/io";
 import CardActiveUser from "@/components/custom/card-active-user";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const Home = () => {
   const model = DashboardViewModel();
@@ -84,8 +93,38 @@ const Home = () => {
         </div>
       </div>{" "}
       <div className="flex flex-col lg:flex-row gap-6 w-full">
-        <div className="w-full lg:w-[70%] bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6">
-          {" "}
+        <div className="w-full lg:w-[70%] bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6 h-full">
+          <Table className=" rounded-md p-5 overflow-hidden">
+            {/* <TableCaption>A list of vouchers</TableCaption> */}
+            <TableHeader>
+              <TableRow className="text-gray-400 ">
+                <TableHead className=" ">Companes</TableHead>
+                <TableHead>Members</TableHead>
+                <TableHead>Budget</TableHead>
+                <TableHead>Completion</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {/* { {data } */}
+              {/* .filter((item: any) => item.voucher.kategori == params.kategori) */}
+              {/* // .map((item) => ( */}
+              <TableRow className="text-white border-u border-gray-600">
+                <TableCell className=" flex items-center">PT.A</TableCell>
+                <TableCell>10</TableCell>
+                <TableCell>$20,000</TableCell>
+                <TableCell>
+                  {" "}
+                  <div className="w-full h-2 bg-[#2D2E5F] rounded-full overflow-hidden">
+                    <div className={`h-full bg-blue-500 w-[30%]`}></div>
+                  </div>
+                </TableCell>
+              </TableRow>
+              {/* // ))}  */}
+            </TableBody>
+            <TableFooter>
+              <TableRow></TableRow>
+            </TableFooter>
+          </Table>
         </div>
         <div className="w-full lg:w-[30%] bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6">
           {" "}
