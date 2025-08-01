@@ -1,62 +1,75 @@
 "use client";
-import { Button } from "@/components/ui/button";
+
 import {
   BookImage,
-  LogOut,
+  ChartNoAxesColumn,
+  House,
+  LucideIcon,
   Plane,
-  Ticket,
   User,
   UtensilsCrossed,
 } from "lucide-react";
-import Link from "next/link";
+import ButtonSidebar from "./ui/button-sidebar";
+import { usePathname } from "next/navigation";
+
 export default function Sidebar() {
+  type TLinks = {
+    id: string;
+    name: string;
+    icon?: LucideIcon;
+    link: string;
+    childrem?: TLinks[];
+  };
+
+  const pathname = usePathname();
+
+  const mainLinks: TLinks[] = [
+    { id: "1", name: "Dashboard", icon: House, link: "/dashboard" },
+    { id: "2", name: "Table", icon: ChartNoAxesColumn, link: "/tasks" },
+  ];
+
+  const accountLinks: TLinks[] = [
+    // { id: "3", name: "Profile", icon: User, link: "/profile" },
+    { id: "4", name: "Sign In", icon: BookImage, link: "/signin" },
+    { id: "5", name: "Sign Up", icon: Plane, link: "/signup" },
+  ];
+
   return (
-    <section className="grow-0 w-[20%] h-screen shadow p-5 space-y-5 max-md:hidden">
+    <aside className="fixed top-0 w-[250px] h-screen m-4 p-6 space-y-6 text-white z-50">
+      <h1 className="text-lg font-bold mb-4 text-center">MENU</h1>
+
+      <span
+        className="block mb-4"
+        style={{
+          height: "2px",
+          background:
+            "linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%)",
+        }}
+      ></span>
       <div className="space-y-2">
-        {/* <div className="uppercase font-bold text-base text-center ">
-          Kategori
-        </div> */}
-        <Button variant={"ghost"} asChild className="w-full justify-start">
-          <Link href={"/history"}>
-            <BookImage className="mr-2 w-4 h-4" />
-            Dashboard
-          </Link>
-        </Button>
-        <Button variant={"ghost"} asChild className="w-full justify-start">
-          <Link href={"/history/makanan"} className="flex justify-between">
-            <div className="flex">
-              <UtensilsCrossed className="mr-2 w-4 h-4" />
-              Report
-            </div>
-          </Link>
-        </Button>
-        <Button variant={"ghost"} asChild className="w-full justify-start">
-          <Link href={"/history/penerbangan"}>
-            <Plane className="mr-2 w-4 h-4" />
-            Master Data
-          </Link>
-        </Button>
-        <Button variant={"ghost"} asChild className="w-full justify-start">
-          <Link href={"/history/konser"}>
-            <Ticket className="mr-2 w-4 h-4" />
-            User
-          </Link>
-        </Button>
+        {mainLinks.map((item) => (
+          <ButtonSidebar
+            key={item.id}
+            data={item}
+            isActive={pathname === item.link}
+          />
+        ))}
       </div>
-      <div className="space-y-2">
-        <Button
-          variant={"destructive"}
-          className="w-full justify-start"
-          type="submit"
-          onClick={() => (
-            (window.location.href = "/login"),
-            localStorage.removeItem("username")
-          )}
-        >
-          <LogOut className="mr-2 w-4 h-4" />
-          Logout
-        </Button>
+
+      <div className="mt-6">
+        <p className="text-xs text-gray-400 uppercase font-semibold mb-2">
+          Account Pages
+        </p>
+        <div className="space-y-2">
+          {accountLinks.map((item) => (
+            <ButtonSidebar
+              key={item.id}
+              data={item}
+              isActive={pathname === item.link}
+            />
+          ))}
+        </div>
       </div>
-    </section>
+    </aside>
   );
 }

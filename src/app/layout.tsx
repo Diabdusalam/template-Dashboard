@@ -19,16 +19,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <section>
-          <Navbar />
-          <section className="flex flex-row gap-5 items-start flex-nowrap">
-            <Sidebar />
-            <section className="grow lg:mr-5 mt-5 h-[87vh]  m-5">
-              {children}
-            </section>
+        <section className="flex flex-row gap-5 items-start">
+          <Sidebar />
+          <section className="grow mt-5 m-5 relative space-y-10 ml-[250px]">
+            <Navbar />
+            <div className="w-[calc(100%-1rem)]"> {children}</div>
           </section>
         </section>
       </body>
+      {/* <body className={inter.className}>
+        <section>
+          <section className="flex flex-row gap-5 relative items-start flex-nowrap ">
+            <Sidebar />
+            <section className="grow lg:mr-5 mt-5 m-5 relative space-y-10">
+              <Navbar />{" "}
+              <div className="w-[calc(100%-1rem)] sticky"> {children}</div>
+            </section>
+          </section>
+        </section>
+      </body> */}
     </html>
   );
 }

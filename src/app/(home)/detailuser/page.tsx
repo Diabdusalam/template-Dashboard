@@ -1,14 +1,5 @@
 "use client";
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import usefetchData from "@/hooks/try/usefetch";
 import { useEffect, useState } from "react";
 
@@ -33,7 +24,7 @@ const DetailsUserPage = () => {
 
   return (
     <>
-      <section className="p-4 border-solid border-2 border-gray rounded-lg">
+      {/* <section className="p-4 border-solid border-2 border-gray rounded-lg">
         <div className="justify-between flex ">
           <div>
             <div className="text-xl font-bold ">Detail User</div>
@@ -68,7 +59,7 @@ const DetailsUserPage = () => {
           <p>Status</p>
           <div>Name</div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
