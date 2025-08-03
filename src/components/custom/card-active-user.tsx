@@ -5,7 +5,7 @@ type cardProps = {
   icon: LucideIcon | IconType;
   title: string;
   count: string;
-  persentage: number;
+  persentage?: number;
 };
 
 function CardActiveUser({ icon: Icon, title, count, persentage }: cardProps) {

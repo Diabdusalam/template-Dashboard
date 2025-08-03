@@ -16,6 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { twMerge } from "tailwind-merge";
 
 const Home = () => {
   const model = DashboardViewModel();
@@ -56,7 +57,7 @@ const Home = () => {
               barChartOptions={model.monthChartOptions}
             />
           </div>
-          <h2 className="text-white text-xl font-bold mb-2">Active Users</h2>
+          <h2 className="text-white text-xl font-bold mb-2">Team Workload</h2>
           <div className="flex items-center text-sm text-green-500 font-semibold mb-6">
             (+23){" "}
             <span className="ml-1 text-gray-400 font-normal">
@@ -67,67 +68,106 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <CardActiveUser
               icon={IoWallet}
-              title="Users"
-              count="32,984"
-              persentage={60}
+              title="Total"
+              count="12"
+              // persentage={60}
             />
             <CardActiveUser
               icon={IoIosRocket}
-              title="Clicks"
-              count="2.84M"
+              title="Overloaded"
+              count="3"
               persentage={50}
             />
             <CardActiveUser
               icon={IoIosRocket}
-              title="Sales"
-              count="$36,984"
-              persentage={20}
+              title="Idle"
+              count="2"
+              // persentage={20}
             />
             <CardActiveUser
               icon={IoIosRocket}
-              title=" Items"
+              title="Avg Taks "
               count="254"
-              persentage={20}
+              // persentage={20}
             />
           </div>
         </div>
       </div>{" "}
-      <div className="flex flex-col lg:flex-row gap-6 w-full">
-        <div className="w-full lg:w-[70%] bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6 h-full">
+      <div className="flex flex-col lg:flex-row  w-full">
+        <div className="w-full bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6 h-full gap-6 ">
+          <h2 className="text-white text-xl font-bold mb-2">Project List</h2>
           <Table className=" rounded-md p-5 overflow-hidden">
-            {/* <TableCaption>A list of vouchers</TableCaption> */}
-            <TableHeader>
-              <TableRow className="text-gray-400 ">
-                <TableHead className=" ">Companes</TableHead>
-                <TableHead>Members</TableHead>
-                <TableHead>Budget</TableHead>
-                <TableHead>Completion</TableHead>
+            <TableHeader className="">
+              <TableRow className=" text-gray-400 border-b border-[#56577a] hover:bg-transparent ">
+                <TableHead className=" ">Project Name</TableHead>{" "}
+                <TableHead>Client</TableHead>
+                <TableHead>PM</TableHead>
+                <TableHead>Deadline</TableHead>
+                <TableHead>Progress</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {/* { {data } */}
-              {/* .filter((item: any) => item.voucher.kategori == params.kategori) */}
-              {/* // .map((item) => ( */}
-              <TableRow className="text-white border-u border-gray-600">
-                <TableCell className=" flex items-center">PT.A</TableCell>
-                <TableCell>10</TableCell>
-                <TableCell>$20,000</TableCell>
-                <TableCell>
-                  {" "}
-                  <div className="w-full h-2 bg-[#2D2E5F] rounded-full overflow-hidden">
-                    <div className={`h-full bg-blue-500 w-[30%]`}></div>
-                  </div>
-                </TableCell>
-              </TableRow>
-              {/* // ))}  */}
+              {model.dataTableProjects.map((item) => (
+                <TableRow className="text-white border-b border-[#56577a] hover:bg-transparent">
+                  <TableCell className=" flex items-center border-none">
+                    {item.projectsName}
+                  </TableCell>
+                  <TableCell>{item.client}</TableCell>
+                  <TableCell>{item.pm}</TableCell>{" "}
+                  <TableCell>{item.deadline}</TableCell>
+                  <TableCell>
+                    {" "}
+                    <div className="w-full h-2 bg-[#2D2E5F] rounded-full overflow-hidden">
+                      <div
+                        className={`h-full bg-blue-500 `}
+                        style={{ width: `${item.completion}%` }}
+                      ></div>
+                    </div>
+                  </TableCell>
+                  <TableCell>{item.status}</TableCell>
+                </TableRow>
+              ))}
             </TableBody>
-            <TableFooter>
-              <TableRow></TableRow>
-            </TableFooter>
+          </Table>
+        </div>
+      </div>{" "}
+      <div className="flex flex-col lg:flex-row gap-6 w-full">
+        <div className="w-full lg:w-[70%] bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6 gap-6 h-full">
+          <h2 className="text-white text-xl font-bold mb-2">Top Clients</h2>
+          <Table className=" rounded-md p-5 overflow-hidden">
+            <TableHeader className="">
+              <TableRow className="text-gray-400 border-b border-[#56577a] hover:bg-transparent">
+                <TableHead>Client</TableHead>
+                <TableHead>Total Projects</TableHead>
+                <TableHead>Active</TableHead>
+                <TableHead>Completed</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {model.dataTopClients.map((item) => (
+                <TableRow className="text-white border-b border-[#56577a] hover:bg-transparent">
+                  <TableCell className=" flex items-center border-none">
+                    {item.name}
+                  </TableCell>
+                  <TableCell>{item.total}</TableCell>
+                  <TableCell>{item.active}</TableCell>{" "}
+                  <TableCell>
+                    {" "}
+                    <div className="w-full h-2 bg-[#2D2E5F] rounded-full overflow-hidden">
+                      <div
+                        className={`h-full bg-blue-500 `}
+                        style={{ width: `${item.completion}%` }}
+                      ></div>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
           </Table>
         </div>
         <div className="w-full lg:w-[30%] bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6">
-          {" "}
+          <h2 className="text-white text-xl font-bold mb-2">Notes</h2>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import usefetchData from "@/hooks/try/usefetch";
+import { stat } from "fs";
 import { useEffect, useState } from "react";
 
 export default function DashboardViewModel() {
@@ -43,12 +44,50 @@ export default function DashboardViewModel() {
       data: [330, 250, 110, 300, 490, 350, 270, 130, 425, 330, 250, 110],
     },
   ];
-  const dataTable = [
+  const dataTableProjects = [
     {
-      companes: "Google",
-      members: 55,
-      budget: "Rp. 100.000.000",
-      completion: 60,
+      projectsName: "Redesing website",
+      client: "PT.A",
+      pm: "Ahmad",
+      deadline: "12/12/2023",
+      completion: 20,
+      status: "On Going",
+    },
+    {
+      projectsName: "Redesing website",
+      client: "PT.A",
+      pm: "Ahmad",
+      deadline: "12/12/2023",
+      completion: 40,
+      status: "On Going",
+    },
+    {
+      projectsName: "Redesing website",
+      client: "PT.A",
+      pm: "Ahmad",
+      deadline: "12/12/2023",
+      completion: 50,
+      status: "On Going",
+    },
+  ];
+  const dataTopClients = [
+    {
+      name: "PT.A",
+      total: 10,
+      active: 3,
+      completion: 33.33,
+    },
+    {
+      name: "PT.B",
+      total: 5,
+      active: 5,
+      completion: 100,
+    },
+    {
+      name: "PT.C",
+      total: 5,
+      active: 5,
+      completion: 100,
     },
   ];
   const fetching = async () => {
@@ -68,7 +107,8 @@ export default function DashboardViewModel() {
 
   return {
     lineChartDataDashboard,
-
+    dataTableProjects,
+    dataTopClients,
     barChartDataDashboard,
     monthChartOptions,
   };
