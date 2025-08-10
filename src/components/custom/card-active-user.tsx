@@ -18,9 +18,11 @@ function CardActiveUser({ icon: Icon, title, count, persentage }: cardProps) {
         {title}
       </div>
       <div className="text-white text-lg font-bold mb-2">{count}</div>
-      <div className="w-full h-2 bg-[#2D2E5F] rounded-full overflow-hidden">
-        <div className={`h-full bg-blue-500 w-[${persentage}%]`}></div>
-      </div>
+      {persentage !== undefined && (
+        <div className="w-full h-2 bg-[#2D2E5F] rounded-full overflow-hidden">
+          <div className={`h-full bg-blue-500 w-[${persentage}%]`}></div>
+        </div>
+      )}
     </div>
   );
 }

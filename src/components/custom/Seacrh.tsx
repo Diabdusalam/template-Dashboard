@@ -1,7 +1,7 @@
 import { SearchIcon } from "lucide-react";
 import { forwardRef, InputHTMLAttributes } from "react";
 
-type SearchProps = InputHTMLAttributes<HTMLInputElement>; // pakai semua prop bawaan input
+type SearchProps = InputHTMLAttributes<HTMLInputElement>;
 
 const SearchComponent = forwardRef<HTMLInputElement, SearchProps>(
   ({ className, ...props }, ref) => {

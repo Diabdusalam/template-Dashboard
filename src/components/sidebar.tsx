@@ -6,6 +6,7 @@ import {
   House,
   LucideIcon,
   Plane,
+  SquareCheckBig,
   User,
   UtensilsCrossed,
 } from "lucide-react";
@@ -25,7 +26,13 @@ export default function Sidebar() {
 
   const mainLinks: TLinks[] = [
     { id: "1", name: "Dashboard", icon: House, link: "/dashboard" },
-    { id: "2", name: "Table", icon: ChartNoAxesColumn, link: "/tasks" },
+    {
+      id: "2",
+      name: "Task Management",
+      icon: SquareCheckBig,
+      link: "/task-management",
+    },
+    { id: "3", name: "Table", icon: ChartNoAxesColumn, link: "/table" },
   ];
 
   const accountLinks: TLinks[] = [
@@ -46,7 +53,7 @@ export default function Sidebar() {
             "linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%)",
         }}
       ></span>
-      <div className="space-y-2">
+      <div className="space-y-4">
         {mainLinks.map((item) => (
           <ButtonSidebar
             key={item.id}
@@ -60,7 +67,7 @@ export default function Sidebar() {
         <p className="text-xs text-gray-400 uppercase font-semibold mb-2">
           Account Pages
         </p>
-        <div className="space-y-2">
+        <div className="space-y-4">
           {accountLinks.map((item) => (
             <ButtonSidebar
               key={item.id}

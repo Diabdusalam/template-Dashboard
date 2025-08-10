@@ -1,22 +1,15 @@
 "use client";
 
-import LineChart from "@/components/charts/lineCharts";
-import CardCustom from "@/components/custom/card-custom";
-import { IoDocumentText, IoWallet } from "react-icons/io5";
-import DashboardViewModel from "./_dashboard-view-model";
 import BarChart from "@/components/charts/barChart";
-import { IoIosRocket } from "react-icons/io";
+import LineChart from "@/components/charts/lineCharts";
 import CardActiveUser from "@/components/custom/card-active-user";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { twMerge } from "tailwind-merge";
+import CardCustom from "@/components/custom/card-custom";
+import { IoIosRocket } from "react-icons/io";
+import { IoDocumentText, IoWallet } from "react-icons/io5";
+import { LuNotebookPen } from "react-icons/lu";
+import ProjectListTable from "./_component/table-project-list";
+import TopClientsTable from "./_component/table-top-clients";
+import DashboardViewModel from "./_dashboard-view-model";
 
 const Home = () => {
   const model = DashboardViewModel();
@@ -65,109 +58,34 @@ const Home = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <CardActiveUser
-              icon={IoWallet}
-              title="Total"
-              count="12"
-              // persentage={60}
-            />
-            <CardActiveUser
-              icon={IoIosRocket}
-              title="Overloaded"
-              count="3"
-              persentage={50}
-            />
-            <CardActiveUser
-              icon={IoIosRocket}
-              title="Idle"
-              count="2"
-              // persentage={20}
-            />
-            <CardActiveUser
-              icon={IoIosRocket}
-              title="Avg Taks "
-              count="254"
-              // persentage={20}
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <CardActiveUser icon={IoWallet} title="Total" count="12" />
+            <CardActiveUser icon={IoIosRocket} title="Over" count="3" />
+            <CardActiveUser icon={IoIosRocket} title="Idle" count="2" />
+            <CardActiveUser icon={IoIosRocket} title="Avg Taks " count="254" />
           </div>
         </div>
       </div>{" "}
       <div className="flex flex-col lg:flex-row  w-full">
         <div className="w-full bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6 h-full gap-6 ">
           <h2 className="text-white text-xl font-bold mb-2">Project List</h2>
-          <Table className=" rounded-md p-5 overflow-hidden">
-            <TableHeader className="">
-              <TableRow className=" text-gray-400 border-b border-[#56577a] hover:bg-transparent ">
-                <TableHead className=" ">Project Name</TableHead>{" "}
-                <TableHead>Client</TableHead>
-                <TableHead>PM</TableHead>
-                <TableHead>Deadline</TableHead>
-                <TableHead>Progress</TableHead>
-                <TableHead>Status</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {model.dataTableProjects.map((item) => (
-                <TableRow className="text-white border-b border-[#56577a] hover:bg-transparent">
-                  <TableCell className=" flex items-center border-none">
-                    {item.projectsName}
-                  </TableCell>
-                  <TableCell>{item.client}</TableCell>
-                  <TableCell>{item.pm}</TableCell>{" "}
-                  <TableCell>{item.deadline}</TableCell>
-                  <TableCell>
-                    {" "}
-                    <div className="w-full h-2 bg-[#2D2E5F] rounded-full overflow-hidden">
-                      <div
-                        className={`h-full bg-blue-500 `}
-                        style={{ width: `${item.completion}%` }}
-                      ></div>
-                    </div>
-                  </TableCell>
-                  <TableCell>{item.status}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <ProjectListTable model={model} />
         </div>
       </div>{" "}
       <div className="flex flex-col lg:flex-row gap-6 w-full">
         <div className="w-full lg:w-[70%] bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6 gap-6 h-full">
           <h2 className="text-white text-xl font-bold mb-2">Top Clients</h2>
-          <Table className=" rounded-md p-5 overflow-hidden">
-            <TableHeader className="">
-              <TableRow className="text-gray-400 border-b border-[#56577a] hover:bg-transparent">
-                <TableHead>Client</TableHead>
-                <TableHead>Total Projects</TableHead>
-                <TableHead>Active</TableHead>
-                <TableHead>Completed</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {model.dataTopClients.map((item) => (
-                <TableRow className="text-white border-b border-[#56577a] hover:bg-transparent">
-                  <TableCell className=" flex items-center border-none">
-                    {item.name}
-                  </TableCell>
-                  <TableCell>{item.total}</TableCell>
-                  <TableCell>{item.active}</TableCell>{" "}
-                  <TableCell>
-                    {" "}
-                    <div className="w-full h-2 bg-[#2D2E5F] rounded-full overflow-hidden">
-                      <div
-                        className={`h-full bg-blue-500 `}
-                        style={{ width: `${item.completion}%` }}
-                      ></div>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <TopClientsTable model={model} />
         </div>
-        <div className="w-full lg:w-[30%] bg-gradient-to-r from-[#060B26] to-[#1A1F37]/50 backdrop-blur-md rounded-2xl p-6">
-          <h2 className="text-white text-xl font-bold mb-2">Notes</h2>
+        <div className="w-full lg:w-[30%] bg-gradient-to-br from-[#060B26] to-[#1A1F37]/70 backdrop-blur-xl rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="flex items-center gap-2 mb-4">
+            <LuNotebookPen className="text-blue-400 text-xl" />
+            <h2 className="text-white text-lg font-semibold">Notes</h2>
+          </div>
+          <span className="block w-full h-[1px] bg-white/20 mb-4"></span>
+          <h2 className="text-white text-2xl font-bold leading-tight ml-1">
+            Don't Forget To Do
+          </h2>
         </div>
       </div>
     </section>

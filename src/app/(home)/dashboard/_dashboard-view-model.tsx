@@ -1,5 +1,4 @@
 import usefetchData from "@/hooks/try/usefetch";
-import { stat } from "fs";
 import { useEffect, useState } from "react";
 
 export default function DashboardViewModel() {

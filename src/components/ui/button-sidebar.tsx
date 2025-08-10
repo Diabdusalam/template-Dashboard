@@ -19,11 +19,11 @@ export default function ButtonSidebar({
   return (
     <Link href={data.link}>
       <div
-        className={`flex items-center gap-3 px-4 py-2 rounded-xl transition-colors 
+        className={`flex items-center gap-3 px-4 py-2 rounded-xl transition-colors  my-2
         ${
           isActive
             ? "bg-[#0075FF] text-white"
-            : "text-[#9DB2C6] hover:bg-[#1A1F37] hover:text-white"
+            : "text-[#9DB2C6]  hover:text-white"
         }`}
       >
         {data.icon && (
